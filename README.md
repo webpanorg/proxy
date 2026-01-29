@@ -16,7 +16,7 @@ PROXY_USER=user PROXY_PASS=pass PROXY_PORT=3128 node index.js
 ## Build the Docker image
 
 ```bash
-docker build -t proxy .
+docker build -t webpanorg/proxy:latest .
 ```
 
 ## Run the Docker image
@@ -27,7 +27,7 @@ docker run \
   -e PROXY_USER=user \
   -e PROXY_PASS=pass \
   -e PROXY_PORT=3128 \
-  proxy
+  webpanorg/proxy:latest
 ```
 
 If you want a different port, change both sides of `-p` and set `PROXY_PORT` to the same value.
@@ -39,7 +39,7 @@ Create a `compose.yml`:
 ```yaml
 services:
   proxy:
-    build: .
+    image: webpanorg/proxy:latest
     ports:
       - "3128:3128"
     environment:
@@ -51,7 +51,7 @@ services:
 Run it:
 
 ```bash
-docker compose up --build
+docker compose up
 ```
 
 ## Environment variables
@@ -64,3 +64,5 @@ docker compose up --build
 
 - This is a forward proxy. Your client must be configured to use it.
 - HTTPS is supported via `CONNECT` tunneling.
+
+
